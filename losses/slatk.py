@@ -13,7 +13,7 @@ class SoftmaxLossAtK(BaseRankingLoss):
     SoftmaxLoss@K (SLatK)
 
     公式（简化实现）：
-    L_{SL@K}(u) = \sum_{i\in P_u} sigma_w(s_{ui}-beta_u^K) * log \sum_j exp((s_{uj}-s_{ui})/tau_d)
+    L_{SL@K}(u) = \\sum_{i\in P_u} sigma_w(s_{ui}-beta_u^K) * log \\sum_j exp((s_{uj}-s_{ui})/tau_d)
 
     - beta_u^K：用户 u 的 Top-K 分位点，优先使用 all_item_scores 精确计算；否则用 (pos+neg) 采样集合做 MC 近似
     - sigma_w(x) = sigmoid(x / tau_w)
@@ -78,4 +78,3 @@ class SoftmaxLossAtK(BaseRankingLoss):
 
         loss = (weight * lse).mean()
         return loss
-
